@@ -3,18 +3,46 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}",
+      "skipFiles": [
+        "node_modules/**/*.js",
+        "runtime.js",
+        "polyfills.js",
+        "vendor.js",
+        "analytics.js"
+      ]
+    },
+    {
       "name": "ng serve",
       "type": "chrome",
       "request": "launch",
       "preLaunchTask": "npm: start",
-      "url": "http://localhost:4200/"
+      "url": "http://localhost:4200/",
+      "skipFiles": [
+        "node_modules/**/*.js",
+        "runtime.js",
+        "polyfills.js",
+        "vendor.js",
+        "analytics.js"
+      ]
     },
     {
       "name": "ng test",
       "type": "chrome",
       "request": "launch",
       "preLaunchTask": "npm: test",
-      "url": "http://localhost:9876/debug.html"
+      "url": "http://localhost:9876/debug.html",
+      "skipFiles": [
+        "node_modules/**/*.js",
+        "runtime.js",
+        "polyfills.js",
+        "vendor.js",
+        "analytics.js"
+      ]
     }
   ]
 }
