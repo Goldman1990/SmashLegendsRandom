@@ -1,6 +1,11 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 
+:root {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    box-sizing: border-box;
+}
+
 body {
     width: 100%;
     height: 100%;
@@ -34,6 +39,11 @@ h1 {
 
     p-dropdown {
         margin-bottom: 20px;
+
+        .p-dropdown {
+            max-width: 300px;
+            min-width: 300px;
+        }
     }
 }
 
@@ -71,7 +81,7 @@ small {
     color: #e24c4c;
 }
 
-.personajes .controles mat-form-field {
+.personajes .controles {
     margin-left: 20px;
 
     .mdc-text-field {

@@ -43,6 +43,16 @@
         "vendor.js",
         "analytics.js"
       ]
+    },
+    {
+      "name": "Front-end App Debug",
+      "type": "msedge",
+      "port": 9222,
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/src-tauri/target/debug/app.exe", // Remember to edit the right path to your app.
+      "useWebView": true,
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "ui:dev"
     }
   ]
 }

@@ -20,8 +20,8 @@ export class AppComponent {
   constructor(private randomServ: RandomService) {
     this.charForm = new FormGroup({
       repeatMode: new FormControl(this.repeatEnum.NoRepeat, [Validators.required]),
-      memberQty: new FormControl(3, [Validators.required, Validators.min(2), Validators.max(8)]),
-      teamQty: new FormControl(2, [Validators.required, Validators.min(2)]),
+      memberQty: new FormControl(3, [Validators.required, Validators.min(1), Validators.max(8)]),
+      teamQty: new FormControl(2, [Validators.required, Validators.min(1)]),
       mapMode: new FormControl(ModeEnum.dominio, [Validators.required])
     });
     this.charForm.get('teamQty')?.valueChanges.subscribe(x => this.startSpin(SpinTypeEnum.char));

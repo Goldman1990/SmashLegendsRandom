@@ -78,7 +78,7 @@ export enum ModeEnum {
     'duelo' = '<img src="/assets/modes/duelo.png" width="100%" height="85%"><label class="char-name">Duelo</label>',
     'galleta_magica_de_la_fortuna' = '<img src="/assets/modes/galleta.png" width="100%" height="85%"><label class="char-name">Galleta Magica De La Fortuna</label>',
     'muerte_por_parejas' = '<img src="/assets/modes/muerte por duo.png" width="100%" height="85%"><label class="char-name">Muerte Por Parejas</label>',
-    'muerte_por_equipo' = '<img src="/assets/modes/muerte por equipo.png" width="100%" height="85%"><label class="char-name">Muerte Por Equipos</label>',
+    'muerte_por_equipo' = '<img src="/assets/modes/muerte por equipo.png" width="100%" height="85%"><label class="char-name">Muerte Por Equipo</label>',
     'guardia_de_la_corona' = '<img src="/assets/modes/guardia_corona.png" width="100%" height="85%"><label class="char-name">Guardia De La Corona</label>',
     'touch_down_duo' = '<img src="/assets/modes/touch down duo.png" width="100%" height="85%"><label class="char-name">Touch Down Duo</label>',
     'touch_down_equipo' = '<img src="/assets/modes/touch down equipo.png" width="100%" height="85%"><label class="char-name">Touch Down Equipo</label>',

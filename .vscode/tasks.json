@@ -37,6 +37,15 @@
           }
         }
       }
-    }
+    },
+    {
+      "label": "ui:dev",
+      "type": "shell",
+      "isBackground": true,
+      "command": "npm",
+      "args": [
+        "start"
+      ],
+    },
   ]
 }

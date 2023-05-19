@@ -41,7 +41,7 @@
           Debe ingresar la cantidad de equipos
         </small>
         <small id="teamQty-min" class="p-error" *ngIf="charForm.get('teamQty')?.hasError('min')">
-          La cantidad de equipos debe ser mayor a 1
+          La cantidad de equipos debe ser mayor a 0
         </small>
         <p-messages *ngIf="charForm.get('teamQty')?.hasError('required')" severity="error"></p-messages>
       </div>
@@ -53,7 +53,7 @@
           Debe ingresar la cantidad de jugadores
         </small>
         <small id="memberQty-min" class="p-error" *ngIf="charForm.get('memberQty')?.hasError('min')">
-          La cantidad de jugadores debe ser mayor a 1
+          La cantidad de jugadores debe ser mayor a 0
         </small>
         <small id="teamQty-max" class="p-error" *ngIf="charForm.get('memberQty')?.hasError('max')">
           La cantidad de jugadores maximos es 8
