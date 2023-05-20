@@ -6,6 +6,12 @@
     box-sizing: border-box;
 }
 
+app-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 body {
     width: 100%;
     height: 100%;
@@ -16,6 +22,18 @@ body {
 
 h1 {
     text-align: center;
+}
+
+.random-todo {
+    margin-top: 20px;
+}
+
+.prio-qty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .principal {

@@ -89,9 +89,44 @@ export class RandomService {
       value: ModeEnum[x as keyof typeof ModeEnum], name: x, corrected_name: x.replaceAll('_', ' ').replace(
         /\w\S*/g,
         function (txt) {
-          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+          return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
         }
-      )
+      ),
+      member_qty: this.getModeMemberQty(ModeEnum[x as keyof typeof ModeEnum]),
+      team_qty: this.getModeTeamQty(ModeEnum[x as keyof typeof ModeEnum])
     }));
+  }
+  public static getModeMemberQty(x: ModeEnum): number {
+    switch (x) {
+      case ModeEnum.battle_royale:
+      case ModeEnum.galleta_magica_de_la_fortuna:
+        return 8;
+      case ModeEnum.duelo:
+      case ModeEnum.muerte_por_parejas:
+      case ModeEnum.touch_down_duo:
+        return 2;
+      case ModeEnum.dominio:
+      case ModeEnum.guardia_de_la_corona:
+      case ModeEnum.touch_down_equipo:
+      case ModeEnum.muerte_por_equipo:
+      default:
+        return 3;
+    }
+  }
+  public static getModeTeamQty(x: ModeEnum): number {
+    switch (x) {
+      case ModeEnum.battle_royale:
+      case ModeEnum.galleta_magica_de_la_fortuna:
+        return 1;
+      case ModeEnum.duelo:
+      case ModeEnum.muerte_por_parejas:
+      case ModeEnum.touch_down_duo:
+      case ModeEnum.dominio:
+      case ModeEnum.guardia_de_la_corona:
+      case ModeEnum.touch_down_equipo:
+      case ModeEnum.muerte_por_equipo:
+      default:
+        return 2;
+    }
   }
 }

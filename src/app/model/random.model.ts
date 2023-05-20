@@ -104,4 +104,6 @@ export interface ModeModel {
     name: string;
     corrected_name: string;
     value: ModeEnum;
+    team_qty: number;
+    member_qty: number;
 }

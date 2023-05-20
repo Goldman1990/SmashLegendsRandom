@@ -22,7 +22,8 @@ export class AppComponent {
       repeatMode: new FormControl(this.repeatEnum.NoRepeat, [Validators.required]),
       memberQty: new FormControl(3, [Validators.required, Validators.min(1), Validators.max(8)]),
       teamQty: new FormControl(2, [Validators.required, Validators.min(1)]),
-      mapMode: new FormControl(ModeEnum.dominio, [Validators.required])
+      mapMode: new FormControl(ModeEnum.dominio, [Validators.required]),
+      priority_qty: new FormControl(false)
     });
     this.charForm.get('teamQty')?.valueChanges.subscribe(x => this.startSpin(SpinTypeEnum.char));
     this.charForm.get('memberQty')?.valueChanges.subscribe(x => this.startSpin(SpinTypeEnum.char));
@@ -62,14 +63,10 @@ export class AppComponent {
     }
   }
   private startSpinMap() {
-    setTimeout(() => {
-      this.init(SpinTypeEnum.map);
-    });
+    this.init(SpinTypeEnum.map);
   }
   private startSpinMode() {
-    setTimeout(() => {
-      this.init(SpinTypeEnum.mode);
-    });
+    this.init(SpinTypeEnum.mode);
   }
   public init(type: SpinTypeEnum) {
     let doors = Array.from(document.querySelectorAll(`.${SpinTypeEnum[type]}-door`));
@@ -83,10 +80,7 @@ export class AppComponent {
       switch (type) {
         case SpinTypeEnum.char:
           pool.push(...this.randomServ.Shuffle(RandomService.GenerateCharList() as []).map(x => (x as CharModel).value));
-          let charItem = this.teams.filter(x => x.teamNum == (door.parentElement?.getAttribute('data')?.toString() as number | undefined)).flatMap(x => x.chars).filter(x => x.name == door.getAttribute('data')).map(x => x.value);
-
-          pool.splice(pool.lastIndexOf(charItem[0]), 1);
-          pool.splice(pool.length, 0, charItem[0]);
+          pool.push(this.teams.find(x => x.teamNum === Number(door.parentElement?.getAttribute('data')))?.chars[Number(door.getAttribute('data') as string)].value as string)
           break;
         case SpinTypeEnum.map:
           let maps = this.randomServ.Shuffle(RandomService.GenerateMapList() as []);
@@ -95,8 +89,14 @@ export class AppComponent {
           pool.push(...filteredMaps);
           break;
         case SpinTypeEnum.mode:
-          let modes = this.randomServ.Shuffle(RandomService.GenerateModeList() as []).map(x => (x as ModeModel).value);
-          pool.push(...modes);
+          let modes = this.randomServ.Shuffle(RandomService.GenerateModeList() as []);
+          pool.push(...modes.map((x: ModeModel) => x.value));
+          if (this.charForm.get('priority_qty')?.value) {
+            if ((modes as ModeModel[])[modes.length - 1].member_qty !== this.charForm.get('memberQty')?.value || (modes as ModeModel[])[modes.length - 1].team_qty !== this.charForm.get('teamQty')?.value) {
+              let modeIndex = modes.findIndex((x: ModeModel) => x.member_qty === this.charForm.get('memberQty')?.value && x.team_qty === this.charForm.get('teamQty')?.value);
+              pool.push((modes[modeIndex] as ModeModel).value);
+            }
+          }
           break;
       }
 
@@ -135,6 +135,14 @@ export class AppComponent {
     }
   }
 
+  public spinAll() {
+    this.spin(SpinTypeEnum.mode);
+    setTimeout(() => {
+      this.spin(SpinTypeEnum.map);
+      this.teams = this.randomServ.getRandomTeams(this.charForm.get('teamQty')?.value, this.charForm.get('memberQty')?.value, this.charForm.get('repeatMode')?.value);
+      this.spin(SpinTypeEnum.char);
+    }, 3500);
+  }
   public spin(type: SpinTypeEnum) {
     if (type === this.spinTypeEnum.char && this.charForm.status == 'INVALID') {
       alert('Hay errores');
@@ -143,6 +151,7 @@ export class AppComponent {
 
     switch (type) {
       case SpinTypeEnum.char:
+        this.teams = this.randomServ.getRandomTeams(this.charForm.get('teamQty')?.value, this.charForm.get('memberQty')?.value, this.charForm.get('repeatMode')?.value);
         this.init(SpinTypeEnum.char);
         break;
       case SpinTypeEnum.map:
@@ -164,7 +173,45 @@ export class AppComponent {
         setTimeout(() => {
           if (type === SpinTypeEnum.mode) {
             let selectMode = mode.find(x => x.corrected_name == door.firstChild?.firstChild?.textContent);
-            this.charForm.get('mapMode')?.setValue(selectMode?.name)
+            this.charForm.get('mapMode')?.setValue(selectMode?.name);
+            switch (selectMode?.value) {
+              case ModeEnum.dominio:
+                this.charForm.get('teamQty')?.setValue(2);
+                this.charForm.get('memberQty')?.setValue(3);
+                break;
+              case ModeEnum.duelo:
+                this.charForm.get('teamQty')?.setValue(2);
+                this.charForm.get('memberQty')?.setValue(1);
+                break;
+              case ModeEnum.galleta_magica_de_la_fortuna:
+                this.charForm.get('teamQty')?.setValue(1);
+                this.charForm.get('memberQty')?.setValue(8);
+                break;
+              case ModeEnum.battle_royale:
+                this.charForm.get('teamQty')?.setValue(1);
+                this.charForm.get('memberQty')?.setValue(8);
+                break;
+              case ModeEnum.guardia_de_la_corona:
+                this.charForm.get('teamQty')?.setValue(2);
+                this.charForm.get('memberQty')?.setValue(3);
+                break;
+              case ModeEnum.muerte_por_equipo:
+                this.charForm.get('teamQty')?.setValue(2);
+                this.charForm.get('memberQty')?.setValue(3);
+                break;
+              case ModeEnum.muerte_por_parejas:
+                this.charForm.get('teamQty')?.setValue(2);
+                this.charForm.get('memberQty')?.setValue(2);
+                break;
+              case ModeEnum.touch_down_duo:
+                this.charForm.get('teamQty')?.setValue(2);
+                this.charForm.get('memberQty')?.setValue(2);
+                break;
+              case ModeEnum.touch_down_equipo:
+                this.charForm.get('teamQty')?.setValue(2);
+                this.charForm.get('memberQty')?.setValue(3);
+                break;
+            }
           }
         }, 3020);
       }

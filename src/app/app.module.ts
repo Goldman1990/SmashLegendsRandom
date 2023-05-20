@@ -10,6 +10,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { MessagesModule } from 'primeng/messages';
+import { InputSwitchModule } from 'primeng/inputswitch';
+
 
 
 
@@ -27,7 +29,8 @@ import { MessagesModule } from 'primeng/messages';
     ButtonModule,
     InputNumberModule,
     DropdownModule,
-    MessagesModule
+    MessagesModule,
+    InputSwitchModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,12 @@
 <h1>LA NO-RUEDA DE LA SI-DEPRESION</h1>
+<p-button class="random-todo" label="Randomizar Todo" (click)="spinAll()"
+  styleClass="p-button-raised  p-button-success"></p-button>
 <div class="principal" [formGroup]="charForm">
   <div class="modos">
+    <div class="prio-qty">
+      <label for="prio-qty">Priorizar Cantidades</label>
+      <p-inputSwitch formControlName="priority_qty" id="prio-qty"></p-inputSwitch>
+    </div>
     <p-button label="Randomizar Modos" (click)="spin(spinTypeEnum.mode)"
       styleClass="p-button-raised  p-button-success"></p-button>
 
@@ -67,9 +73,11 @@
       styleClass="p-button-raised  p-button-success"></p-button>
 
     <div id="app-chars">
-      <div class="char-doors" [attr.data]="team.teamNum" *ngFor="let team of teams">
-        <label class="team-name">Equipo {{team.teamNum+1}}°</label>
-        <div class="char-door" [attr.data]="character.name" *ngFor="let character of team.chars">
+      <div class="char-doors" [attr.data]="iTeam"
+        *ngFor="let team of [].constructor(charForm.get('teamQty')?.value);let iTeam = index">
+        <label class="team-name">Equipo {{iTeam+1}}°</label>
+        <div class="char-door" [attr.data]="iChar"
+          *ngFor="let character of [].constructor(charForm.get('memberQty')?.value);let iChar = index">
           <div class="char-boxes">
           </div>
         </div>
