@@ -38,6 +38,10 @@ export enum CharEnum {
     'Brick - Chancho' = '<img src="assets/characters/brick - chancho.png" width="100%" height="85%"><label class="char-name">Brick - Chancho</label>',
     'Alice' = '<img src="assets/characters/alice.png" width="100%" height="85%"><label class="char-name">Alice</label>',
     'Ali' = '<img src="assets/characters/ali.png" width="100%" height="85%"><label class="char-name">Ali</label>',
+    'Aoi' = '<img src="assets/characters/aoi.png" width="100%" height="85%"><label class="char-name">Aoi</label>',
+    'Sra. Lettuce' = '<img src="assets/characters/lettuce.png" width="100%" height="85%"><label class="char-name">Sra. Lettuce</label>',
+    'Marina' = '<img src="assets/characters/marina.png" width="100%" height="85%"><label class="char-name">Marina</label>',
+    'Timun' = '<img src="assets/characters/timun.png" width="100%" height="85%"><label class="char-name">Timun</label>',
 }
 export enum MapEnum {
     'barco_atardecer_dominio' = '<img src="/assets/maps/Barco pirata abandonado - atardecer - Dominio.jpg" width="100%" height="85%"><label class="char-name">Barco Pirata Abandonado - Atardecer</label>',
